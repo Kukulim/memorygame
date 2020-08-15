@@ -34,8 +34,7 @@ export default {
         [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
       }
     },
-    selectCard(card) {
-
+    async selectCard(card) {
       if (this.lastClicked.length < 2) {
         this.lastClicked.push(card);
       }
@@ -50,12 +49,14 @@ export default {
             }
         }
         else{
+            await sleep(700);
             this.lastClicked=[];
         }
       }
     },
   },
 };
+const sleep = m => new Promise(r => setTimeout(r, m))
 </script>
 
 <style></style>
