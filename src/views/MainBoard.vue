@@ -1,7 +1,9 @@
 <template>
-  <div>
+  <div class="container text-center">
     <div v-for="item in cards" :key="item">
-      <div>{{ item }}</div>
+      <div class="mycard" @click="selectCard(item)">
+          <p v-if="lastClicked.includes(item)||discoverdCard.includes(item)">{{item}}</p>
+          </div>
     </div>
   </div>
 </template>
@@ -13,6 +15,8 @@ export default {
   data() {
     return {
       cards: [],
+      lastClicked: [],
+      discoverdCard: [],
     };
   },
   created() {
@@ -24,12 +28,32 @@ export default {
       this.cards = [];
       this.cards = data.myCards;
     },
-    shuffleCards(){
-            for (let i = this.cards.length - 1; i > 0; i--) {
+    shuffleCards() {
+      for (let i = this.cards.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
-    }
-    }
+      }
+    },
+    selectCard(card) {
+
+      if (this.lastClicked.length < 2) {
+        this.lastClicked.push(card);
+      }
+      if (this.lastClicked.length == 2) {
+        if (
+          this.lastClicked[0].toUpperCase() == this.lastClicked[1].toUpperCase()
+        ) {
+          this.discoverdCard.push(this.lastClicked[0],this.lastClicked[1]);
+          this.lastClicked=[];
+            if(this.cards.length==this.discoverdCard.length){
+                alert("brawo wygrałes");
+            }
+        }
+        else{
+            this.lastClicked=[];
+        }
+      }
+    },
   },
 };
 </script>

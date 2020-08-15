@@ -1,18 +1,16 @@
 const myCards = [
+  "a",
   "A",
-  "A",
+  "b",
   "B",
-  "B",
+  "c",
   "C",
-  "C",
+  "d",
   "D",
-  "D",
+  "e",
   "E",
-  "E",
+  "f",
   "F",
-  "F",
-  "G",
-  "G",
 ];
 
 export const data = {
