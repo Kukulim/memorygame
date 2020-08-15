@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Board from './views/Board.vue'
+import Board from './views/MainBoard.vue'
 
 export default {
   name: 'App',
@@ -16,5 +16,5 @@ export default {
 </script>
 
 <style>
-@import './design/style.scss';
+@import './design/style.css';
 </style>
