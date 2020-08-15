@@ -1,20 +1,21 @@
 <template>
   <div id="app">
-    <Board />
+    <HeaderBar />
+    <router-view />
   </div>
 </template>
 
 <script>
-import Board from './views/MainBoard.vue'
+import HeaderBar from './components/header/header-bar.vue'
 
 export default {
   name: 'App',
   components: {
-    Board
+    HeaderBar
   }
 }
 </script>
 
 <style>
-@import './design/style.css';
+@import './design/style.scss';
 </style>
