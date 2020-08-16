@@ -1,10 +1,12 @@
 <template>
-  <div class="container text-center">
-    <div v-for="item in cards" :key="item">
+  <div class="container">
+    <div class="row">
+    <div v-for="item in cards" :key="item" class="col-sm-3">
       <div class="mycard" @click="selectCard(item)">
           <p v-if="lastClicked.includes(item)||discoverdCard.includes(item)">{{item}}</p>
           </div>
     </div>
+  </div>
   </div>
 </template>
 
