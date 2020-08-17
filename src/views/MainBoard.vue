@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <div v-if="this.cards.length==this.discoverdCard.length" class="text-success m-5 win-info">Brawo wygrałeś ilość kliknięć: duzo</div>
     <div class="row mt-4">
     <div v-for="item in cards" :key="item" class="col-sm-3">
       <div class="mycard" @click="selectCard(item)" v-bind:class="getClass(item)">
