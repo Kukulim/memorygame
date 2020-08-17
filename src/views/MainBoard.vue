@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row mt-4">
     <div v-for="item in cards" :key="item" class="col-sm-3">
-      <div class="mycard" @click="selectCard(item)">
+      <div class="mycard" @click="selectCard(item)" v-bind:class="getClass(item)">
           <img :src="require(`@/images/${item.toUpperCase()}.jpg`)" class="img-fluid rounded p-2" v-if="lastClicked.includes(item)||discoverdCard.includes(item)">
           </div>
     </div>
@@ -56,6 +56,11 @@ export default {
         }
       }
     },
+    getClass(item){
+      if(this.lastClicked.includes(item)||this.discoverdCard.includes(item)){
+        return "disableddiv";
+      }
+    }
   },
 };
 const sleep = m => new Promise(r => setTimeout(r, m))

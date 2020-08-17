@@ -13,3 +13,7 @@
   background-color: aquamarine;
   margin: 15px;
 }
+.disableddiv {
+  pointer-events: none;
+  opacity: 0.9;
+}
