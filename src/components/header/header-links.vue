@@ -1,4 +1,5 @@
 <template>
+<div>
   <a
     :href="github"
     target="_blank"
@@ -6,6 +7,7 @@
   >
     Github
   </a>
+</div>
 </template>
 
 <script>

@@ -5,7 +5,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    background-color: #d0ffe9b5;
+    background-color: #1a3529b5;
+    min-height: 900px;
   }
 
 .mycard{
@@ -13,6 +14,8 @@
   width: 200px;
   background-color: aquamarine;
   margin: 15px;
+  border: solid 2px rgb(206, 248, 248);
+  border-radius: 15px;
 }
 .disableddiv {
   pointer-events: none;
@@ -20,4 +23,8 @@
 }
 .win-info{
   font-size: 25px ;
+}
+.myimage{
+  border-radius: 15px;
+  padding: 5px;
 }
