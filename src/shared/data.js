@@ -38,7 +38,13 @@ const myCardsHard = [
   "h",
   "H",
   "i",
-  "I"
+  "I",
+  "j",
+  "J",
+  "k",
+  "K",
+  "l",
+  "L"
 ];
 
 export const data = {
