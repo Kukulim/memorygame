@@ -34,13 +34,26 @@
           v-bind:class="getClass(item)+ getsize()"
         >
           <img
-            :src="require(`@/images/${item.toUpperCase()}.jpg`)"
+            :src="require(`@/images/${deck}/${item.toUpperCase()}.jpg`)"
             class="img-fluid myimage"
             v-if="lastClicked.includes(item) || discoverdCard.includes(item)"
           />
         </div>
       </div>
     </div>
+        <button class="btn btn-primary m-2 disableddiv btn-lg">SELECT DECK:</button>
+    <button
+      class="btn btn-primary m-2"
+      @click="deck = 'fruit'"
+    >
+      FRUIT
+    </button>
+    <button
+      class="btn btn-primary m-2"
+      @click="deck = 'butterfly'"
+    >
+      BUTTERFLY
+    </button>
   </div>
 </template>
 
@@ -55,6 +68,7 @@ export default {
       discoverdCard: [],
       timesCliked: 0,
       difficulty: "medium",
+      deck:"fruit",
     };
   },
   created() {
