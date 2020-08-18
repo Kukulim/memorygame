@@ -1,13 +1,46 @@
 <template>
   <div class="container">
-    <div v-if="this.cards.length==this.discoverdCard.length" class="text-success m-5 win-info">Brawo wygrałeś ilość kliknięć: duzo</div>
-    <div class="row mt-4">
-    <div v-for="item in cards" :key="item" class="col-sm-3">
-      <div class="mycard" @click="selectCard(item)" v-bind:class="getClass(item)">
-          <img :src="require(`@/images/${item.toUpperCase()}.jpg`)" class="img-fluid myimage" v-if="lastClicked.includes(item)||discoverdCard.includes(item)">
-          </div>
+    <button class="btn btn-primary m-2 disableddiv btn-lg">DIFFICULT:</button>
+    <button
+      class="btn btn-primary m-2"
+      @click="(difficulty = 'easy'),loadCards()"
+    >
+      EASY
+    </button>
+    <button
+      class="btn btn-primary m-2"
+      @click="(difficulty = 'medium'),loadCards()"
+    >
+      MEDIUM
+    </button>
+    <button
+      class="btn btn-primary m-2"
+      @click="(difficulty = 'hard'),loadCards()"
+    >
+      HARD
+    </button>
+    <div
+      v-if="this.cards.length == this.discoverdCard.length"
+      class="text-success m-5 win-info"
+    >
+      Congratulations you win, number of clicks: {{ timesCliked }}. To start
+      again chose difficulty.
     </div>
-  </div>
+    <div class="row mt-4">
+      <div v-for="item in cards" :key="item" v-bind:class="getDifficultsize()">
+        <div
+          class="mycard"
+          @click="selectCard(item)"
+          v-bind:class="getClass(item)+ getsize()"
+        >
+          <img
+            :src="require(`@/images/${item.toUpperCase()}.jpg`)"
+            class="img-fluid myimage"
+            v-if="lastClicked.includes(item) || discoverdCard.includes(item)"
+          />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,16 +53,31 @@ export default {
       cards: [],
       lastClicked: [],
       discoverdCard: [],
+      timesCliked: 0,
+      difficulty: "medium",
     };
   },
   created() {
     this.loadCards();
-    this.shuffleCards();
   },
   methods: {
     loadCards() {
       this.cards = [];
-      this.cards = data.myCards;
+      switch (this.difficulty) {
+        case "easy":
+          this.cards = data.myCardsEasy;
+          break;
+        case "medium":
+          this.cards = data.myCardsMedium;
+          break;
+        case "hard":
+          this.cards = data.myCardsHard;
+          break;
+      }
+      this.timesCliked = 0;
+      this.lastClicked = [];
+      this.discoverdCard = [];
+      this.shuffleCards();
     },
     shuffleCards() {
       for (let i = this.cards.length - 1; i > 0; i--) {
@@ -40,31 +88,39 @@ export default {
     async selectCard(card) {
       if (this.lastClicked.length < 2) {
         this.lastClicked.push(card);
+        this.timesCliked++;
       }
       if (this.lastClicked.length == 2) {
         if (
           this.lastClicked[0].toUpperCase() == this.lastClicked[1].toUpperCase()
         ) {
-          this.discoverdCard.push(this.lastClicked[0],this.lastClicked[1]);
-          this.lastClicked=[];
-            if(this.cards.length==this.discoverdCard.length){
-                alert("brawo wygrałes");
-            }
-        }
-        else{
-            await sleep(700);
-            this.lastClicked=[];
+          this.discoverdCard.push(this.lastClicked[0], this.lastClicked[1]);
+          this.lastClicked = [];
+        } else {
+          await sleep(700);
+          this.lastClicked = [];
         }
       }
     },
-    getClass(item){
-      if(this.lastClicked.includes(item)||this.discoverdCard.includes(item)){
+    getClass(item) {
+      if (
+        this.lastClicked.includes(item) ||
+        this.discoverdCard.includes(item)
+      ) {
         return "disableddiv";
       }
-    }
+    },
+    getDifficultsize(){
+      if(this.difficulty=='easy') return "col-sm-4";
+      if(this.difficulty=='medium') return "col-sm-3";
+      if(this.difficulty=='medium') return "col-sm-1";
+    },
+    getsize(){
+    if(this.difficulty=="hard") return " mysmallcard";
+  },
   },
 };
-const sleep = m => new Promise(r => setTimeout(r, m))
+const sleep = (m) => new Promise((r) => setTimeout(r, m));
 </script>
 
 <style></style>

@@ -19,7 +19,7 @@
           class="collapse navbar-collapse"
           id="navbarSupportedContent"
         >
-          
+          <HeaderNav />
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <HeaderLinks />
@@ -34,9 +34,10 @@
 <script>
 import HeaderBarBrand from "@/components/header/header-bar-brand";
 import HeaderLinks from "@/components/header/header-links";
+import HeaderNav from "@/components/header/header-nav";
 
 export default {
   name: "HeaderBar",
-  components: { HeaderBarBrand, HeaderLinks }
+  components: { HeaderBarBrand, HeaderLinks, HeaderNav }
 };
 </script>
