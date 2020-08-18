@@ -54,6 +54,12 @@
     >
       BUTTERFLY
     </button>
+        <button
+      class="btn btn-primary m-2"
+      @click="deck = 'flower'"
+    >
+      FLOWER
+    </button>
   </div>
 </template>
 
@@ -106,7 +112,7 @@ export default {
       }
       if (this.lastClicked.length == 2) {
         if (
-          this.lastClicked[0].toUpperCase() == this.lastClicked[1].toUpperCase()
+          this.lastClicked[0].toUpperCase() == this.lastClicked[1].toUpperCase() && this.lastClicked[0] != this.lastClicked[1]
         ) {
           this.discoverdCard.push(this.lastClicked[0], this.lastClicked[1]);
           this.lastClicked = [];
